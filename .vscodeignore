@@ -1,0 +1,11 @@
+**/.git/**
+**/.vscode/**
+**/.github/**
+**/node_modules/**
+!**/node_modules/vscode-languageclient/**
+.gitignore
+.eslintrc.cjs
+tsconfig.json
+src/**
+**/*.map
+.DS_Store

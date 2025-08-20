@@ -1,0 +1,84 @@
+{
+  "name": "copilot-telegram-alert",
+  "displayName": "Copilot Telegram Alert",
+  "description": "Heuristically detects accepted inline suggestions and sends you a Telegram message.",
+  "version": "0.1.0",
+  "publisher": "yourname",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://example.com/your/repo.git"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilotTelegramAlert.ping",
+        "title": "Copilot Telegram Alert: Send Test Ping"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Copilot Telegram Alert",
+      "properties": {
+        "copilotTelegramAlert.telegramBotToken": {
+          "type": "string",
+          "markdownDescription": "Bot token from @BotFather",
+          "default": ""
+        },
+        "copilotTelegramAlert.chatId": {
+          "type": "string",
+          "markdownDescription": "Telegram chat_id to receive notifications",
+          "default": ""
+        },
+        "copilotTelegramAlert.minChars": {
+          "type": "number",
+          "default": 60,
+          "markdownDescription": "Minimum number of characters inserted to consider an inline completion acceptance."
+        },
+        "copilotTelegramAlert.minLines": {
+          "type": "number",
+          "default": 2,
+          "markdownDescription": "Minimum number of lines inserted to consider an inline completion acceptance."
+        },
+        "copilotTelegramAlert.cooldownSeconds": {
+          "type": "number",
+          "default": 45,
+          "markdownDescription": "Cooldown to avoid spamming notifications."
+        },
+        "copilotTelegramAlert.batchSeconds": {
+          "type": "number",
+          "default": 5,
+          "markdownDescription": "Number of seconds to batch file changes before sending a notification. Default: 5."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "lint": "eslint src --ext .ts",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
+    "@typescript-eslint/parser": "^8.0.1",
+    "eslint": "^9.7.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.40.0",
+    "@vscode/vsce": "^2.15.0"
+  }
+}
