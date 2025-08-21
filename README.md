@@ -19,7 +19,7 @@ The extension collects all files changed (based on the `batchSeconds` setting) a
 
 1. Open Telegram and search for **@BotFather**  
 2. Send `/newbot` and follow the instructions  
-3. Save your **Bot Token** (looks like: `123456789:ABCdefGhIJKlmNoPQRstUVwxyZ`)  
+3. Save your **Bot Token**
 4. Get your **Chat ID**:  
    - Add your bot to a chat or group  
    - Send any message to the chat  
