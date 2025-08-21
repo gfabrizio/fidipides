@@ -1,13 +1,13 @@
 {
-  "name": "copilot-telegram-alert",
-  "displayName": "Copilot Telegram Alert",
-  "description": "Heuristically detects accepted inline suggestions and sends you a Telegram message.",
+  "name": "fidipides",
+  "displayName": "Fidipides Copilot Telegram Alert",
+  "description": "Heuristically detects accepted chat suggestions and sends you a Telegram message.",
   "version": "0.1.0",
-  "publisher": "yourname",
+  "publisher": "gfabrizio",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://example.com/your/repo.git"
+    "url": "https://github.com/gfabrizio/fitipides/"
   },
   "engines": {
     "vscode": "^1.90.0"
@@ -22,43 +22,33 @@
   "contributes": {
     "commands": [
       {
-        "command": "copilotTelegramAlert.ping",
-        "title": "Copilot Telegram Alert: Send Test Ping"
+        "command": "fidipides.ping",
+        "title": "Fidipides: Send Telegram Ping"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Copilot Telegram Alert",
+      "title": "Fidipides Telegram Alert",
       "properties": {
-        "copilotTelegramAlert.telegramBotToken": {
+        "fidipides.telegramBotToken": {
           "type": "string",
           "markdownDescription": "Bot token from @BotFather",
           "default": ""
         },
-        "copilotTelegramAlert.chatId": {
+        "fidipides.chatId": {
           "type": "string",
           "markdownDescription": "Telegram chat_id to receive notifications",
           "default": ""
         },
-        "copilotTelegramAlert.minChars": {
-          "type": "number",
-          "default": 60,
-          "markdownDescription": "Minimum number of characters inserted to consider an inline completion acceptance."
-        },
-        "copilotTelegramAlert.minLines": {
-          "type": "number",
-          "default": 2,
-          "markdownDescription": "Minimum number of lines inserted to consider an inline completion acceptance."
-        },
-        "copilotTelegramAlert.cooldownSeconds": {
+        "fidipides.cooldownSeconds": {
           "type": "number",
           "default": 45,
           "markdownDescription": "Cooldown to avoid spamming notifications."
         },
-        "copilotTelegramAlert.batchSeconds": {
+        "fidipides.batchSeconds": {
           "type": "number",
-          "default": 5,
-          "markdownDescription": "Number of seconds to batch file changes before sending a notification. Default: 5."
+          "default": 60,
+          "markdownDescription": "Number of seconds to batch file changes before sending a notification. Default: 60."
         }
       }
     }
@@ -67,18 +57,37 @@
     "compile": "tsc -p .",
     "watch": "tsc -w -p .",
     "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
     "vscode:prepublish": "npm run compile",
     "package": "vsce package",
-    "publish": "vsce publish"
+    "publish": "vsce publish",
+    "clean": "rimraf dist",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
+    "@types/glob": "^9.0.0",
     "@types/node": "^20.12.12",
+    "@types/sinon": "^17.0.3",
     "@types/vscode": "^1.90.0",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
+    "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.15.0",
     "eslint": "^9.7.0",
-    "typescript": "^5.5.4",
+    "glob": "^11.0.3",
+    "rimraf": "^5.0.5",
+    "sinon": "^17.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
     "typescript-eslint": "^8.40.0",
-    "@vscode/vsce": "^2.15.0"
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.5",
+    "ts-jest": "^29.1.1"
+  },
+  "dependencies": {
+    "@types/minimatch": "^6.0.0",
+    "lru-cache": "^11.1.0",
+    "minimatch": "^10.0.3"
   }
 }
